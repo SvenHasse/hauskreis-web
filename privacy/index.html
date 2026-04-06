@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datenschutzerklärung – Hauskreis App</title>
+  <title>Datenschutzerklärung / Privacy Policy – Hauskreis App</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -19,6 +19,7 @@
       color: #fff;
       padding: 48px 24px 40px;
       text-align: center;
+      position: relative;
     }
 
     header .cross {
@@ -37,6 +38,29 @@
       font-size: 14px;
       opacity: 0.75;
     }
+
+    .lang-switcher {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lang-btn:hover { background: rgba(255,255,255,0.25); }
+    .lang-btn.active { background: rgba(255,255,255,0.35); border-color: #fff; }
 
     main {
       max-width: 760px;
@@ -62,9 +86,7 @@
       gap: 8px;
     }
 
-    .card h2 .icon {
-      font-size: 20px;
-    }
+    .card h2 .icon { font-size: 20px; }
 
     .card p {
       font-size: 15px;
@@ -92,18 +114,6 @@
     }
 
     .card a:hover { opacity: 0.75; }
-
-    .badge {
-      display: inline-block;
-      background: #f0ebe3;
-      color: #5c3d1e;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 2px 10px;
-      border-radius: 20px;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
 
     table {
       width: 100%;
@@ -146,237 +156,334 @@
       font-size: 13px;
       color: #999;
     }
+
+    .lang-de, .lang-en { display: none; }
   </style>
 </head>
 <body>
 
 <header>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('de')" id="btn-de">DE</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
   <div class="cross">✝</div>
-  <h1>Datenschutzerklärung</h1>
-  <p>Hauskreis App &nbsp;·&nbsp; Stand: April 2026</p>
+  <h1 class="lang-de">Datenschutzerklärung</h1>
+  <h1 class="lang-en">Privacy Policy</h1>
+  <p class="lang-de">Hauskreis App &nbsp;·&nbsp; Stand: April 2026</p>
+  <p class="lang-en">Hauskreis App &nbsp;·&nbsp; Last updated: April 2026</p>
 </header>
 
 <main>
 
-  <!-- 1. Verantwortlicher -->
-  <div class="card">
-    <h2><span class="icon">👤</span> Verantwortlicher</h2>
-    <p>
-      <strong>Sven Hasse</strong><br />
-      E-Mail: <a href="mailto:hasse.sven@outlook.de">hasse.sven@outlook.de</a>
-    </p>
-    <p>
-      Bei Fragen zum Datenschutz kannst du uns jederzeit per E-Mail kontaktieren.
-    </p>
-  </div>
+  <!-- ========== GERMAN ========== -->
 
-  <!-- 2. Was ist die Hauskreis App -->
-  <div class="card">
-    <h2><span class="icon">⛪</span> Was ist die Hauskreis App?</h2>
-    <p>
-      Die Hauskreis App ist eine private, gruppenbasierte Community-App für christliche
-      Hauskreise. Sie ermöglicht es, Treffen zu planen, Gebetsanliegen zu teilen,
-      Umfragen zu erstellen und einen KI-gestützten Bibelassistenten zu nutzen.
-    </p>
-    <p>
-      Die App ist kein soziales Netzwerk – alle Inhalte sind privat und nur für
-      Mitglieder der jeweiligen Hauskreis-Gruppe sichtbar.
-    </p>
-  </div>
+  <div class="lang-de">
 
-  <!-- 3. Erhobene Daten -->
-  <div class="card">
-    <h2><span class="icon">📋</span> Welche Daten werden erhoben?</h2>
-
-    <table>
-      <tr>
-        <th>Datenkategorie</th>
-        <th>Details</th>
-        <th>Zweck</th>
-      </tr>
-      <tr>
-        <td><strong>Account-Daten</strong></td>
-        <td>Name, E-Mail-Adresse, Passwort (verschlüsselt)</td>
-        <td>Registrierung & Login</td>
-      </tr>
-      <tr>
-        <td><strong>Profilbild</strong></td>
-        <td>Freiwillig hochgeladenes Foto (max. 500 KB)</td>
-        <td>Identifikation in der Gruppe</td>
-      </tr>
-      <tr>
-        <td><strong>Apple-ID</strong></td>
-        <td>Anonyme Apple-Nutzer-ID bei „Sign in with Apple"</td>
-        <td>Login via Apple</td>
-      </tr>
-      <tr>
-        <td><strong>Gruppeninhalte</strong></td>
-        <td>Treffen, Protokolle, Gebetsanliegen, Umfragen</td>
-        <td>App-Funktionen</td>
-      </tr>
-      <tr>
-        <td><strong>Push-Token</strong></td>
-        <td>Expo Push Token des Geräts</td>
-        <td>Push-Benachrichtigungen</td>
-      </tr>
-      <tr>
-        <td><strong>Chat-Verlauf (KI)</strong></td>
-        <td>Nachrichten an den Bibelassistenten</td>
-        <td>KI-Antworten (nicht dauerhaft gespeichert)</td>
-      </tr>
-      <tr>
-        <td><strong>Feedback</strong></td>
-        <td>Freiwillig eingesendete Nachrichten</td>
-        <td>App-Verbesserung</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- 4. Speicherung -->
-  <div class="card">
-    <h2><span class="icon">🗄️</span> Wo werden die Daten gespeichert?</h2>
-    <p>
-      Deine Daten werden auf Servern von <strong>Railway</strong>
-      (PostgreSQL-Datenbank) gespeichert. Railway nutzt Infrastruktur in der
-      <strong>EU (Frankfurt / AWS eu-central-1)</strong>.
-    </p>
-    <div class="highlight">
-      Alle Passwörter werden mit <strong>BCrypt</strong> gehasht gespeichert –
-      wir haben keinen Zugriff auf dein Klartextpasswort.
+    <div class="card">
+      <h2><span class="icon">👤</span> Verantwortlicher</h2>
+      <p>
+        <strong>Sven Hasse</strong><br />
+        E-Mail: <a href="mailto:privacy@hauskreis-app.de">privacy@hauskreis-app.de</a>
+      </p>
+      <p>Bei Fragen zum Datenschutz kannst du uns jederzeit per E-Mail kontaktieren.</p>
     </div>
-    <p>
-      Weitere Informationen zum Datenschutz von Railway findest du unter:
-      <a href="https://railway.app/legal/privacy" target="_blank">railway.app/legal/privacy</a>
-    </p>
-  </div>
 
-  <!-- 5. Drittanbieter -->
-  <div class="card">
-    <h2><span class="icon">🔗</span> Drittanbieter-Dienste</h2>
-
-    <table>
-      <tr>
-        <th>Dienst</th>
-        <th>Zweck</th>
-        <th>Datenschutz</th>
-      </tr>
-      <tr>
-        <td><strong>Expo / Apple APNs</strong></td>
-        <td>Push-Benachrichtigungen</td>
-        <td><a href="https://expo.dev/privacy" target="_blank">expo.dev/privacy</a></td>
-      </tr>
-      <tr>
-        <td><strong>Resend</strong></td>
-        <td>E-Mail-Versand (Feedback, Passwort-Reset)</td>
-        <td><a href="https://resend.com/privacy" target="_blank">resend.com/privacy</a></td>
-      </tr>
-      <tr>
-        <td><strong>Anthropic (Claude)</strong></td>
-        <td>KI-Bibelassistent & täglicher Bibelvers</td>
-        <td><a href="https://www.anthropic.com/privacy" target="_blank">anthropic.com/privacy</a></td>
-      </tr>
-      <tr>
-        <td><strong>Apple (Sign in with Apple)</strong></td>
-        <td>Optionaler Login via Apple-ID</td>
-        <td><a href="https://www.apple.com/privacy/" target="_blank">apple.com/privacy</a></td>
-      </tr>
-    </table>
-
-    <div class="highlight" style="margin-top: 14px;">
-      <strong>Hinweis KI-Assistent:</strong> Nachrichten an den Bibelassistenten
-      werden an die Anthropic API übermittelt und dort verarbeitet. Sie werden
-      nicht dauerhaft in der Hauskreis-Datenbank gespeichert. Bitte teile
-      keine sensiblen persönlichen Daten im Chat.
+    <div class="card">
+      <h2><span class="icon">⛪</span> Was ist die Hauskreis App?</h2>
+      <p>
+        Die Hauskreis App ist eine private, gruppenbasierte Community-App für christliche
+        Hauskreise. Sie ermöglicht es, Treffen zu planen, Gebetsanliegen zu teilen,
+        Umfragen zu erstellen und einen KI-gestützten Bibelassistenten zu nutzen.
+      </p>
+      <p>
+        Die App ist kein soziales Netzwerk – alle Inhalte sind privat und nur für
+        Mitglieder der jeweiligen Hauskreis-Gruppe sichtbar.
+      </p>
     </div>
-  </div>
 
-  <!-- 6. Rechtsgrundlage -->
-  <div class="card">
-    <h2><span class="icon">⚖️</span> Rechtsgrundlage</h2>
-    <p>
-      Die Verarbeitung deiner Daten erfolgt auf folgenden Rechtsgrundlagen
-      gemäß DSGVO:
-    </p>
-    <ul>
-      <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Vertragserfüllung (Bereitstellung der App-Funktionen)</li>
-      <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung (z.B. Push-Benachrichtigungen, Profilbild)</li>
-      <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – Berechtigte Interessen (App-Sicherheit, Feedback)</li>
-    </ul>
-  </div>
+    <div class="card">
+      <h2><span class="icon">📋</span> Welche Daten werden erhoben?</h2>
+      <table>
+        <tr><th>Datenkategorie</th><th>Details</th><th>Zweck</th></tr>
+        <tr><td><strong>Account-Daten</strong></td><td>Name, E-Mail-Adresse, Passwort (verschlüsselt)</td><td>Registrierung &amp; Login</td></tr>
+        <tr><td><strong>Profilbild</strong></td><td>Freiwillig hochgeladenes Foto (max. 500 KB)</td><td>Identifikation in der Gruppe</td></tr>
+        <tr><td><strong>Apple-ID</strong></td><td>Anonyme Apple-Nutzer-ID bei „Sign in with Apple"</td><td>Login via Apple</td></tr>
+        <tr><td><strong>Gruppeninhalte</strong></td><td>Treffen, Protokolle, Gebetsanliegen, Umfragen</td><td>App-Funktionen</td></tr>
+        <tr><td><strong>Push-Token</strong></td><td>Expo Push Token des Geräts</td><td>Push-Benachrichtigungen</td></tr>
+        <tr><td><strong>Chat-Verlauf (KI)</strong></td><td>Nachrichten an den Bibelassistenten</td><td>KI-Antworten (nicht dauerhaft gespeichert)</td></tr>
+        <tr><td><strong>Feedback</strong></td><td>Freiwillig eingesendete Nachrichten</td><td>App-Verbesserung</td></tr>
+      </table>
+    </div>
 
-  <!-- 7. Deine Rechte -->
-  <div class="card">
-    <h2><span class="icon">✅</span> Deine Rechte</h2>
-    <p>Du hast jederzeit das Recht auf:</p>
-    <ul>
-      <li><strong>Auskunft</strong> über deine gespeicherten Daten</li>
-      <li><strong>Berichtigung</strong> unrichtiger Daten</li>
-      <li><strong>Löschung</strong> deiner Daten</li>
-      <li><strong>Einschränkung</strong> der Verarbeitung</li>
-      <li><strong>Datenübertragbarkeit</strong></li>
-      <li><strong>Widerspruch</strong> gegen die Verarbeitung</li>
-    </ul>
-    <p>
-      Um dein Konto und alle damit verbundenen Daten zu löschen, sende
-      eine E-Mail an <a href="mailto:hasse.sven@outlook.de">hasse.sven@outlook.de</a>
-      mit dem Betreff „Konto löschen".
-    </p>
-    <p>
-      Du hast außerdem das Recht, Beschwerde bei der zuständigen
-      Datenschutzbehörde einzulegen.
-    </p>
-  </div>
+    <div class="card">
+      <h2><span class="icon">🗄️</span> Wo werden die Daten gespeichert?</h2>
+      <p>
+        Deine Daten werden auf Servern von <strong>Railway</strong>
+        (PostgreSQL-Datenbank) gespeichert. Railway nutzt Infrastruktur in der
+        <strong>EU (Frankfurt / AWS eu-central-1)</strong>.
+      </p>
+      <div class="highlight">
+        Alle Passwörter werden mit <strong>BCrypt</strong> gehasht gespeichert –
+        wir haben keinen Zugriff auf dein Klartextpasswort.
+      </div>
+      <p>
+        Weitere Informationen: <a href="https://railway.app/legal/privacy" target="_blank">railway.app/legal/privacy</a>
+      </p>
+    </div>
 
-  <!-- 8. Datenspeicherung -->
-  <div class="card">
-    <h2><span class="icon">🕐</span> Speicherdauer</h2>
-    <p>
-      Deine Daten werden gespeichert, solange dein Konto aktiv ist.
-      Nach einer Kontolöschung werden alle personenbezogenen Daten
-      innerhalb von <strong>30 Tagen</strong> unwiderruflich gelöscht.
-    </p>
-    <p>
-      Push-Token werden gelöscht sobald du Push-Benachrichtigungen in
-      den Einstellungen deaktivierst oder dein Konto löschst.
-    </p>
-  </div>
+    <div class="card">
+      <h2><span class="icon">🔗</span> Drittanbieter-Dienste</h2>
+      <table>
+        <tr><th>Dienst</th><th>Zweck</th><th>Datenschutz</th></tr>
+        <tr><td><strong>Expo / Apple APNs</strong></td><td>Push-Benachrichtigungen</td><td><a href="https://expo.dev/privacy" target="_blank">expo.dev/privacy</a></td></tr>
+        <tr><td><strong>Resend</strong></td><td>E-Mail-Versand (Feedback, Passwort-Reset, Verifikation)</td><td><a href="https://resend.com/privacy" target="_blank">resend.com/privacy</a></td></tr>
+        <tr><td><strong>Anthropic (Claude)</strong></td><td>KI-Bibelassistent &amp; täglicher Bibelvers</td><td><a href="https://www.anthropic.com/privacy" target="_blank">anthropic.com/privacy</a></td></tr>
+        <tr><td><strong>Apple (Sign in with Apple)</strong></td><td>Optionaler Login via Apple-ID</td><td><a href="https://www.apple.com/privacy/" target="_blank">apple.com/privacy</a></td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 14px;">
+        <strong>Hinweis KI-Assistent:</strong> Nachrichten an den Bibelassistenten
+        werden an die Anthropic API übermittelt und dort verarbeitet. Sie werden
+        nicht dauerhaft in der Hauskreis-Datenbank gespeichert. Bitte teile
+        keine sensiblen persönlichen Daten im Chat.
+      </div>
+    </div>
 
-  <!-- 9. Minderjährige -->
-  <div class="card">
-    <h2><span class="icon">👶</span> Minderjährige</h2>
-    <p>
-      Die App richtet sich an Nutzer ab 13 Jahren. Personen unter 13 Jahren
-      dürfen die App nicht ohne Einwilligung eines Erziehungsberechtigten nutzen.
-      Sollten wir Kenntnis davon erlangen, dass Daten von Kindern unter 13 Jahren
-      erhoben wurden, werden diese unverzüglich gelöscht.
-    </p>
-  </div>
+    <div class="card">
+      <h2><span class="icon">⚖️</span> Rechtsgrundlage</h2>
+      <p>Die Verarbeitung deiner Daten erfolgt auf folgenden Rechtsgrundlagen gemäß DSGVO:</p>
+      <ul>
+        <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Vertragserfüllung (Bereitstellung der App-Funktionen)</li>
+        <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung (z.B. Push-Benachrichtigungen, Profilbild)</li>
+        <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – Berechtigte Interessen (App-Sicherheit, Feedback)</li>
+      </ul>
+    </div>
 
-  <!-- 10. Änderungen -->
-  <div class="card">
-    <h2><span class="icon">🔄</span> Änderungen dieser Erklärung</h2>
-    <p>
-      Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen.
-      Die jeweils aktuelle Version ist stets unter dieser URL abrufbar.
-      Bei wesentlichen Änderungen werden aktive Nutzer per Push-Benachrichtigung
-      oder E-Mail informiert.
-    </p>
-  </div>
+    <div class="card">
+      <h2><span class="icon">✅</span> Deine Rechte</h2>
+      <p>Du hast jederzeit das Recht auf:</p>
+      <ul>
+        <li><strong>Auskunft</strong> über deine gespeicherten Daten</li>
+        <li><strong>Berichtigung</strong> unrichtiger Daten</li>
+        <li><strong>Löschung</strong> deiner Daten</li>
+        <li><strong>Einschränkung</strong> der Verarbeitung</li>
+        <li><strong>Datenübertragbarkeit</strong></li>
+        <li><strong>Widerspruch</strong> gegen die Verarbeitung</li>
+      </ul>
+      <p>
+        Um dein Konto und alle damit verbundenen Daten zu löschen, sende
+        eine E-Mail an <a href="mailto:privacy@hauskreis-app.de">privacy@hauskreis-app.de</a>
+        mit dem Betreff „Konto löschen".
+      </p>
+      <p>Du hast außerdem das Recht, Beschwerde bei der zuständigen Datenschutzbehörde einzulegen.</p>
+    </div>
 
-  <!-- Kontakt -->
-  <div class="card">
-    <h2><span class="icon">📬</span> Kontakt</h2>
-    <p>
-      Bei Fragen oder Anliegen zum Datenschutz erreichst du uns unter:<br />
-      <a href="mailto:hasse.sven@outlook.de">hasse.sven@outlook.de</a>
-    </p>
-  </div>
+    <div class="card">
+      <h2><span class="icon">🕐</span> Speicherdauer</h2>
+      <p>
+        Deine Daten werden gespeichert, solange dein Konto aktiv ist.
+        Nach einer Kontolöschung werden alle personenbezogenen Daten
+        innerhalb von <strong>30 Tagen</strong> unwiderruflich gelöscht.
+      </p>
+      <p>
+        Push-Token werden gelöscht sobald du Push-Benachrichtigungen in
+        den Einstellungen deaktivierst oder dein Konto löschst.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">👶</span> Minderjährige</h2>
+      <p>
+        Die App richtet sich an Nutzer ab 13 Jahren. Personen unter 13 Jahren
+        dürfen die App nicht ohne Einwilligung eines Erziehungsberechtigten nutzen.
+        Sollten wir Kenntnis davon erlangen, dass Daten von Kindern unter 13 Jahren
+        erhoben wurden, werden diese unverzüglich gelöscht.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">🔄</span> Änderungen dieser Erklärung</h2>
+      <p>
+        Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen.
+        Die jeweils aktuelle Version ist stets unter dieser URL abrufbar.
+        Bei wesentlichen Änderungen werden aktive Nutzer per Push-Benachrichtigung
+        oder E-Mail informiert.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">📬</span> Kontakt</h2>
+      <p>
+        Bei Fragen oder Anliegen zum Datenschutz erreichst du uns unter:<br />
+        <a href="mailto:privacy@hauskreis-app.de">privacy@hauskreis-app.de</a>
+      </p>
+    </div>
+
+  </div><!-- end .lang-de -->
+
+
+  <!-- ========== ENGLISH ========== -->
+
+  <div class="lang-en">
+
+    <div class="card">
+      <h2><span class="icon">👤</span> Data Controller</h2>
+      <p>
+        <strong>Sven Hasse</strong><br />
+        Email: <a href="mailto:privacy@hauskreis-app.de">privacy@hauskreis-app.de</a>
+      </p>
+      <p>If you have any questions about privacy, feel free to contact us by email at any time.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">⛪</span> What is the Hauskreis App?</h2>
+      <p>
+        Hauskreis App is a private, group-based community app for Christian home groups
+        (Hauskreise). It allows members to plan meetings, share prayer requests,
+        create polls, and use an AI-powered Bible assistant.
+      </p>
+      <p>
+        The app is not a social network — all content is private and visible only to
+        members of the respective group.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">📋</span> What data do we collect?</h2>
+      <table>
+        <tr><th>Category</th><th>Details</th><th>Purpose</th></tr>
+        <tr><td><strong>Account data</strong></td><td>Name, email address, password (encrypted)</td><td>Registration &amp; login</td></tr>
+        <tr><td><strong>Profile photo</strong></td><td>Voluntarily uploaded photo (max. 500 KB)</td><td>Identification within the group</td></tr>
+        <tr><td><strong>Apple ID</strong></td><td>Anonymous Apple user ID via "Sign in with Apple"</td><td>Login via Apple</td></tr>
+        <tr><td><strong>Group content</strong></td><td>Meetings, minutes, prayer requests, polls</td><td>App functionality</td></tr>
+        <tr><td><strong>Push token</strong></td><td>Expo push token of the device</td><td>Push notifications</td></tr>
+        <tr><td><strong>AI chat history</strong></td><td>Messages sent to the Bible assistant</td><td>AI responses (not stored permanently)</td></tr>
+        <tr><td><strong>Feedback</strong></td><td>Voluntarily submitted messages</td><td>App improvement</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">🗄️</span> Where is data stored?</h2>
+      <p>
+        Your data is stored on <strong>Railway</strong> servers
+        (PostgreSQL database). Railway uses infrastructure in the
+        <strong>EU (Frankfurt / AWS eu-central-1)</strong>.
+      </p>
+      <div class="highlight">
+        All passwords are stored as <strong>BCrypt</strong> hashes —
+        we have no access to your plain-text password.
+      </div>
+      <p>
+        More information: <a href="https://railway.app/legal/privacy" target="_blank">railway.app/legal/privacy</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">🔗</span> Third-party services</h2>
+      <table>
+        <tr><th>Service</th><th>Purpose</th><th>Privacy policy</th></tr>
+        <tr><td><strong>Expo / Apple APNs</strong></td><td>Push notifications</td><td><a href="https://expo.dev/privacy" target="_blank">expo.dev/privacy</a></td></tr>
+        <tr><td><strong>Resend</strong></td><td>Email delivery (feedback, password reset, verification)</td><td><a href="https://resend.com/privacy" target="_blank">resend.com/privacy</a></td></tr>
+        <tr><td><strong>Anthropic (Claude)</strong></td><td>AI Bible assistant &amp; daily Bible verse</td><td><a href="https://www.anthropic.com/privacy" target="_blank">anthropic.com/privacy</a></td></tr>
+        <tr><td><strong>Apple (Sign in with Apple)</strong></td><td>Optional login via Apple ID</td><td><a href="https://www.apple.com/privacy/" target="_blank">apple.com/privacy</a></td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 14px;">
+        <strong>Note on AI assistant:</strong> Messages sent to the Bible assistant
+        are transmitted to and processed by the Anthropic API. They are not
+        stored permanently in the Hauskreis database. Please do not share
+        sensitive personal data in the chat.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">⚖️</span> Legal basis</h2>
+      <p>Data processing is based on the following legal grounds under GDPR:</p>
+      <ul>
+        <li><strong>Art. 6(1)(b) GDPR</strong> – Contract performance (providing app functionality)</li>
+        <li><strong>Art. 6(1)(a) GDPR</strong> – Consent (e.g. push notifications, profile photo)</li>
+        <li><strong>Art. 6(1)(f) GDPR</strong> – Legitimate interests (app security, feedback)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">✅</span> Your rights</h2>
+      <p>You have the right at any time to:</p>
+      <ul>
+        <li><strong>Access</strong> your stored data</li>
+        <li><strong>Rectification</strong> of inaccurate data</li>
+        <li><strong>Erasure</strong> of your data</li>
+        <li><strong>Restriction</strong> of processing</li>
+        <li><strong>Data portability</strong></li>
+        <li><strong>Object</strong> to processing</li>
+      </ul>
+      <p>
+        To delete your account and all associated data, send an email to
+        <a href="mailto:privacy@hauskreis-app.de">privacy@hauskreis-app.de</a>
+        with the subject "Delete account".
+      </p>
+      <p>You also have the right to lodge a complaint with the competent data protection authority.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">🕐</span> Data retention</h2>
+      <p>
+        Your data is retained for as long as your account is active.
+        Upon account deletion, all personal data will be permanently
+        deleted within <strong>30 days</strong>.
+      </p>
+      <p>
+        Push tokens are deleted as soon as you disable push notifications
+        in settings or delete your account.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">👶</span> Minors</h2>
+      <p>
+        The app is intended for users aged 13 and above. Persons under 13 may
+        not use the app without parental consent. If we become aware that data
+        from children under 13 has been collected, it will be deleted immediately.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">🔄</span> Changes to this policy</h2>
+      <p>
+        We reserve the right to update this privacy policy as needed.
+        The current version is always available at this URL.
+        Users will be notified of material changes via push notification or email.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2><span class="icon">📬</span> Contact</h2>
+      <p>
+        For privacy-related questions or requests, contact us at:<br />
+        <a href="mailto:privacy@hauskreis-app.de">privacy@hauskreis-app.de</a>
+      </p>
+    </div>
+
+  </div><!-- end .lang-en -->
 
 </main>
 
 <footer>
-  © 2026 Hauskreis App · Sven Hasse · <a href="mailto:hasse.sven@outlook.de" style="color:#aaa;">hasse.sven@outlook.de</a>
+  © 2026 Hauskreis App · Sven Hasse · <a href="mailto:privacy@hauskreis-app.de" style="color:#aaa;">privacy@hauskreis-app.de</a>
 </footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-de, .lang-en').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.lang-' + lang).forEach(el => el.style.display = 'block');
+    document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  // detect browser language
+  const userLang = navigator.language || navigator.userLanguage;
+  setLang(userLang.startsWith('de') ? 'de' : 'en');
+</script>
 
 </body>
 </html>
