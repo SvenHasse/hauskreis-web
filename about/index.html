@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über uns – Hauskreis App</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f4f0;
+      color: #2c2c2c;
+      line-height: 1.7;
+    }
+
+    header {
+      background: #5c3d1e;
+      color: #fff;
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    header .cross { font-size: 36px; margin-bottom: 12px; }
+    header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; }
+    header p { margin-top: 8px; font-size: 14px; opacity: 0.75; }
+
+    .lang-switcher {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lang-btn:hover { background: rgba(255,255,255,0.25); }
+    .lang-btn.active { background: rgba(255,255,255,0.35); border-color: #fff; }
+
+    .nav-back {
+      position: absolute;
+      top: 22px;
+      left: 20px;
+    }
+
+    .nav-back a {
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-back a:hover { color: #fff; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+
+    .card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #5c3d1e;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 .icon { font-size: 20px; }
+
+    .card p {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .card a {
+      color: #5c3d1e;
+      text-decoration: none;
+      border-bottom: 1px solid #c8a97a;
+    }
+
+    .card a:hover { opacity: 0.75; }
+
+    /* Team cards */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 540px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #f0ebe3;
+      border: 3px solid #c8a97a;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .team-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #5c3d1e;
+      margin-bottom: 4px;
+    }
+
+    .team-card .role {
+      font-size: 12px;
+      font-weight: 600;
+      color: #c8a97a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .team-card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Verse block */
+    .verse {
+      background: #f7f3ee;
+      border-left: 3px solid #5c3d1e;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-style: italic;
+      font-size: 15px;
+      color: #5c3d1e;
+    }
+
+    .verse cite {
+      display: block;
+      font-style: normal;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 6px;
+      opacity: 0.7;
+    }
+
+    /* Donation section */
+    .donate-card {
+      background: linear-gradient(135deg, #5c3d1e 0%, #7a5230 100%);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(92,61,30,0.25);
+    }
+
+    .donate-card .heart { font-size: 36px; margin-bottom: 12px; }
+
+    .donate-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .donate-card p {
+      font-size: 15px;
+      opacity: 0.85;
+      max-width: 480px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    .donate-btn {
+      display: inline-block;
+      background: #fff;
+      color: #5c3d1e;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .donate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .donate-note {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-top: 12px;
+    }
+
+    /* App links */
+    .app-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .app-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0ebe3;
+      border: 1px solid #c8a97a;
+      color: #5c3d1e !important;
+      border-bottom: none !important;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .app-link:hover { background: #e8ddd0 !important; opacity: 1 !important; }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    footer a { color: #aaa; text-decoration: none; border-bottom: 1px solid #ddd; }
+
+    .lang-de, .lang-en { display: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-back">
+    <a href="/">← Hauskreis App</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('de')" id="btn-de">DE</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+  <div class="cross">✝</div>
+  <h1 class="lang-de">Über uns</h1>
+  <h1 class="lang-en">About us</h1>
+  <p class="lang-de">Zwei Freunde. Eine Vision. Eine App.</p>
+  <p class="lang-en">Two friends. One vision. One app.</p>
+</header>
+
+<main>
+
+  <!-- ========== GERMAN ========== -->
+  <div class="lang-de">
+
+    <!-- Mission -->
+    <div class="card">
+      <h2><span class="icon">🙏</span> Unsere Geschichte</h2>
+      <p>
+        Hauskreise sind für uns keine Pflicht — sie sind das Herzstück unseres Glaubenslebens.
+        Gemeinschaft, Gebet, Gottes Wort. Woche für Woche.
+      </p>
+      <p>
+        Irgendwann haben wir gemerkt: Die Organisation nervt. WhatsApp-Gruppen,
+        verlorene Gebetsanliegen, vergessene Protokolle. Also haben wir uns gedacht —
+        warum nicht einfach selbst etwas bauen?
+      </p>
+      <div class="verse">
+        „Wo zwei oder drei in meinem Namen versammelt sind, da bin ich mitten unter ihnen."
+        <cite>— Matthäus 18,20</cite>
+      </div>
+      <p>
+        Hauskreis App ist komplett kostenlos und soll es bleiben.
+        Gebaut mit Liebe, für die Gemeinde.
+      </p>
+    </div>
+
+    <!-- Team -->
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">🧑‍💻</div>
+        <h3>Sven Hasse</h3>
+        <div class="role">Entwickler & Gründer</div>
+        <p>
+          Softwareentwickler aus Leidenschaft. Aktives Mitglied in seinem Hauskreis
+          seit Jahren. Hat die App gebaut, weil er selbst das Chaos kannte.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">🤝</div>
+        <h3>Moritz Pereira</h3>
+        <div class="role">Co-Gründer</div>
+        <p>
+          Gläubiger Christ und Mitgestalter der Vision hinter der App.
+          Sorgt dafür, dass die App nicht nur funktioniert,
+          sondern wirklich zur Gemeinschaft beiträgt.
+        </p>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="card">
+      <h2><span class="icon">💡</span> Was uns antreibt</h2>
+      <p>
+        Wir glauben, dass Technologie dem Glauben dienen kann — nicht umgekehrt.
+        Die App soll Hauskreise nicht digitalisieren, sondern die echten Begegnungen
+        einfacher machen.
+      </p>
+      <p>
+        Deshalb: Keine Werbung. Keine versteckten Kosten. Kein Tracking.
+        Nur eine saubere, sichere App für eure Gemeinschaft.
+      </p>
+    </div>
+
+    <!-- Donate -->
+    <div class="donate-card">
+      <div class="heart">☕</div>
+      <h2>Die App ist kostenlos — und bleibt es</h2>
+      <p>
+        Wir finanzieren Server, Domain und Entwicklung aus eigener Tasche.
+        Wer uns dabei unterstützen möchte, kann uns gerne einen Kaffee spendieren.
+        Kein Druck — jeder Cent hilft und wird geschätzt.
+      </p>
+      <a href="https://buymeacoffee.com/hauskreisapp" class="donate-btn" target="_blank">
+        ☕ Einen Kaffee spendieren
+      </a>
+      <div class="donate-note">Einmalig oder wiederkehrend — du entscheidest.</div>
+    </div>
+
+    <!-- Contact -->
+    <div class="card">
+      <h2><span class="icon">📬</span> Kontakt & Feedback</h2>
+      <p>
+        Fragen, Ideen, Feedback oder einfach Hallo sagen? Wir freuen uns über jede Nachricht.
+      </p>
+      <div class="app-links">
+        <a href="mailto:feedback@hauskreis-app.de" class="app-link">✉️ feedback@hauskreis-app.de</a>
+        <a href="/privacy" class="app-link">🔒 Datenschutzerklärung</a>
+      </div>
+    </div>
+
+  </div><!-- end .lang-de -->
+
+
+  <!-- ========== ENGLISH ========== -->
+  <div class="lang-en">
+
+    <!-- Mission -->
+    <div class="card">
+      <h2><span class="icon">🙏</span> Our story</h2>
+      <p>
+        Home groups aren't an obligation for us — they're the heartbeat of our faith life.
+        Community, prayer, God's Word. Week after week.
+      </p>
+      <p>
+        At some point we realised: the organisation is a pain. WhatsApp groups,
+        lost prayer requests, forgotten minutes. So we thought — why not just build
+        something ourselves?
+      </p>
+      <div class="verse">
+        "For where two or three gather in my name, there am I with them."
+        <cite>— Matthew 18:20</cite>
+      </div>
+      <p>
+        Hauskreis App is completely free and will stay that way.
+        Built with love, for the community.
+      </p>
+    </div>
+
+    <!-- Team -->
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">🧑‍💻</div>
+        <h3>Sven Hasse</h3>
+        <div class="role">Developer & Founder</div>
+        <p>
+          Software developer by passion. Active home group member for years.
+          Built the app because he knew the chaos firsthand.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">🤝</div>
+        <h3>Moritz Pereira</h3>
+        <div class="role">Co-Founder</div>
+        <p>
+          Believing Christian and co-creator of the vision behind the app.
+          Makes sure the app not only works, but truly contributes to community.
+        </p>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="card">
+      <h2><span class="icon">💡</span> What drives us</h2>
+      <p>
+        We believe technology can serve faith — not the other way around.
+        The app isn't meant to digitalise home groups, but to make real
+        encounters easier.
+      </p>
+      <p>
+        That's why: no ads. No hidden costs. No tracking.
+        Just a clean, secure app for your community.
+      </p>
+    </div>
+
+    <!-- Donate -->
+    <div class="donate-card">
+      <div class="heart">☕</div>
+      <h2>The app is free — and will stay that way</h2>
+      <p>
+        We fund servers, domain, and development out of our own pockets.
+        If you'd like to support us, feel free to buy us a coffee.
+        No pressure — every cent helps and is appreciated.
+      </p>
+      <a href="https://buymeacoffee.com/hauskreisapp" class="donate-btn" target="_blank">
+        ☕ Buy us a coffee
+      </a>
+      <div class="donate-note">One-time or recurring — you decide.</div>
+    </div>
+
+    <!-- Contact -->
+    <div class="card">
+      <h2><span class="icon">📬</span> Contact & Feedback</h2>
+      <p>
+        Questions, ideas, feedback or just want to say hello? We'd love to hear from you.
+      </p>
+      <div class="app-links">
+        <a href="mailto:feedback@hauskreis-app.de" class="app-link">✉️ feedback@hauskreis-app.de</a>
+        <a href="/privacy" class="app-link">🔒 Privacy Policy</a>
+      </div>
+    </div>
+
+  </div><!-- end .lang-en -->
+
+</main>
+
+<footer>
+  © 2026 Hauskreis App ·
+  <a href="/">Home</a> ·
+  <a href="/privacy">Datenschutz / Privacy</a>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-de, .lang-en').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.lang-' + lang).forEach(el => el.style.display = 'block');
+    document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  const userLang = navigator.language || navigator.userLanguage;
+  setLang(userLang.startsWith('de') ? 'de' : 'en');
+</script>
+
+</body>
+</html>
